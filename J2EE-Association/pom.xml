@@ -19,6 +19,21 @@
     	<artifactId>derby</artifactId>
     	<version>10.10.1.1</version>
     </dependency>
+    <dependency>
+    	<groupId>javax.servlet</groupId>
+    	<artifactId>javax.servlet-api</artifactId>
+    	<version>3.0.1</version>
+    </dependency>
+    <dependency>
+    	<groupId>jstl</groupId>
+    	<artifactId>jstl</artifactId>
+    	<version>1.2</version>
+    </dependency>
+    <dependency>
+    	<groupId>org.apache.maven.plugin-tools</groupId>
+    	<artifactId>maven-plugin-annotations</artifactId>
+    	<version>3.2</version>
+    </dependency>
   </dependencies>
   <build>
     <finalName>J2EE-Association</finalName>
