@@ -24,6 +24,10 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="lib" path="D:/Programmation/Kepler-J2EE/plugins/derbyclient-10.9.jar"/>
+	<classpathentry kind="lib" path="D:/Programmation/Kepler-J2EE/plugins/derbyclient-10.9.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.nondependency" value=""/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
