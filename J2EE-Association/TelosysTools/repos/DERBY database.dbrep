@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Telosys Database Repository --><root>
+<tableList generation="2013-10-07 10:15:10" name="DERBY database" type="Apache Derby">
+<table catalog="" javaBean="Article" javaBeanConv="" javaBeanDAO="" javaBeanList="" name="ARTICLE" schema="APP">
+<column dbDefaultValue="" dbName="AR_ID" dbNotNull="true" dbPosition="1" dbPrimaryKey="true" dbSize="2" dbTypeName="VARCHAR" inputType="text" javaName="arId" javaType="java.lang.String" jdbcTypeCode="12" label="Ar Id" maxLength="2" notEmpty="true" notNull="true" selected="true"/>
+<column dbDefaultValue="" dbName="AR_QUANTITY" dbNotNull="true" dbPosition="2" dbSize="10" dbTypeName="INTEGER" inputType="number" javaDefaultValue="0" javaName="arQuantity" javaType="int" jdbcTypeCode="4" label="Ar Quantity" notNull="false" selected="true"/>
+<column dbDefaultValue="" dbForeignKey="true" dbName="AR_CO_ID" dbNotNull="true" dbPosition="3" dbSize="10" dbTypeName="INTEGER" inputType="number" javaDefaultValue="0" javaName="arCoId" javaType="int" jdbcTypeCode="4" label="Ar Co Id" notNull="false" selected="true"/>
+<column dbDefaultValue="" dbForeignKey="true" dbName="AR_CA_ID" dbNotNull="true" dbPosition="4" dbSize="10" dbTypeName="INTEGER" inputType="number" javaDefaultValue="0" javaName="arCaId" javaType="int" jdbcTypeCode="4" label="Ar Ca Id" notNull="false" selected="true"/>
+<fk name="CATALOGUE_FC">
+<fkcol colname="AR_CA_ID" colref="CA_ID" deferrable="7" deleterule="3" sequence="1" tablename="ARTICLE" tableref="CATALOGUE" updaterule="3"/>
+</fk>
+<fk name="COMMAND_FC">
+<fkcol colname="AR_CO_ID" colref="CO_ID" deferrable="7" deleterule="3" sequence="1" tablename="ARTICLE" tableref="COMMAND" updaterule="3"/>
+</fk>
+<link cardinality="ManyToOne" cascade="" fetch="DEFAULT" foreignKeyName="COMMAND_FC" id="LINK_FK_COMMAND_FC_O" inverseSideOf="" javaName="command" javaType="Command" joinTableName="" mappedBy="" optional="UNDEFINED" owningSide="true" sourceTableName="ARTICLE" targetEntity="Command" targetTableName="COMMAND" used="true">
+<joinColumns>
+<joinColumn insertable="false" name="AR_CO_ID" nullable="true" referencedColumnName="CO_ID" unique="false" updatable="false"/>
+</joinColumns>
+</link>
+<link cardinality="OneToMany" cascade="" fetch="DEFAULT" foreignKeyName="ARTICLE_FC" id="LINK_FK_ARTICLE_FC_I" inverseSideOf="LINK_FK_ARTICLE_FC_O" javaName="listOfCommand" javaType="java.util.List" joinTableName="" mappedBy="article" optional="UNDEFINED" owningSide="false" sourceTableName="ARTICLE" targetEntity="Command" targetTableName="COMMAND" used="true"/>
+<link cardinality="ManyToOne" cascade="" fetch="DEFAULT" foreignKeyName="CATALOGUE_FC" id="LINK_FK_CATALOGUE_FC_O" inverseSideOf="" javaName="catalogue" javaType="Catalogue" joinTableName="" mappedBy="" optional="UNDEFINED" owningSide="true" sourceTableName="ARTICLE" targetEntity="Catalogue" targetTableName="CATALOGUE" used="true">
+<joinColumns>
+<joinColumn insertable="false" name="AR_CA_ID" nullable="true" referencedColumnName="CA_ID" unique="false" updatable="false"/>
+</joinColumns>
+</link>
+</table>
+<table catalog="" javaBean="Catalogue" javaBeanConv="" javaBeanDAO="" javaBeanList="" name="CATALOGUE" schema="APP">
+<column dbAutoIncremented="true" dbDefaultValue="AUTOINCREMENT: start 1 increment 1" dbName="CA_ID" dbNotNull="true" dbPosition="1" dbPrimaryKey="true" dbSize="10" dbTypeName="INTEGER" inputType="number" javaDefaultValue="0" javaName="caId" javaType="int" jdbcTypeCode="4" label="Ca Id" notNull="false" selected="true"/>
+<column dbDefaultValue="" dbName="CA_CODE" dbNotNull="true" dbPosition="2" dbSize="2" dbTypeName="VARCHAR" inputType="text" javaName="caCode" javaType="java.lang.String" jdbcTypeCode="12" label="Ca Code" maxLength="2" notEmpty="true" notNull="true" selected="true"/>
+<column dbDefaultValue="" dbName="CA_NAME" dbNotNull="true" dbPosition="3" dbSize="255" dbTypeName="VARCHAR" inputType="text" javaName="caName" javaType="java.lang.String" jdbcTypeCode="12" label="Ca Name" maxLength="255" notEmpty="true" notNull="true" selected="true"/>
+<column dbDefaultValue="" dbName="CA_PRICE" dbNotNull="true" dbPosition="4" dbSize="52" dbTypeName="DOUBLE" inputType="number" javaDefaultValue="0" javaName="caPrice" javaType="double" jdbcTypeCode="8" label="Ca Price" notNull="false" selected="true"/>
+<column dbDefaultValue="" dbName="CA_STOCK" dbNotNull="true" dbPosition="5" dbSize="10" dbTypeName="INTEGER" inputType="number" javaDefaultValue="0" javaName="caStock" javaType="int" jdbcTypeCode="4" label="Ca Stock" notNull="false" selected="true"/>
+<link cardinality="OneToMany" cascade="" fetch="DEFAULT" foreignKeyName="CATALOGUE_FC" id="LINK_FK_CATALOGUE_FC_I" inverseSideOf="LINK_FK_CATALOGUE_FC_O" javaName="listOfArticle" javaType="java.util.List" joinTableName="" mappedBy="catalogue" optional="UNDEFINED" owningSide="false" sourceTableName="CATALOGUE" targetEntity="Article" targetTableName="ARTICLE" used="true"/>
+</table>
+<table catalog="" javaBean="Command" javaBeanConv="" javaBeanDAO="" javaBeanList="" name="COMMAND" schema="APP">
+<column dbAutoIncremented="true" dbDefaultValue="AUTOINCREMENT: start 1 increment 1" dbName="CO_ID" dbNotNull="true" dbPosition="1" dbPrimaryKey="true" dbSize="10" dbTypeName="INTEGER" inputType="number" javaDefaultValue="0" javaName="coId" javaType="int" jdbcTypeCode="4" label="Co Id" notNull="false" selected="true"/>
+<column dbDefaultValue="" dbForeignKey="true" dbName="CO_US_ID" dbNotNull="true" dbPosition="2" dbSize="10" dbTypeName="INTEGER" inputType="number" javaDefaultValue="0" javaName="coUsId" javaType="int" jdbcTypeCode="4" label="Co Us Id" notNull="false" selected="true"/>
+<column dbDefaultValue="" dbForeignKey="true" dbName="CO_AR_ID" dbNotNull="true" dbPosition="3" dbSize="2" dbTypeName="VARCHAR" inputType="text" javaName="coArId" javaType="java.lang.String" jdbcTypeCode="12" label="Co Ar Id" maxLength="2" notEmpty="true" notNull="true" selected="true"/>
+<fk name="ARTICLE_FC">
+<fkcol colname="CO_AR_ID" colref="AR_ID" deferrable="7" deleterule="3" sequence="1" tablename="COMMAND" tableref="ARTICLE" updaterule="3"/>
+</fk>
+<fk name="USER_FC">
+<fkcol colname="CO_US_ID" colref="US_ID" deferrable="7" deleterule="3" sequence="1" tablename="COMMAND" tableref="USERINFO" updaterule="3"/>
+</fk>
+<link cardinality="ManyToOne" cascade="" fetch="DEFAULT" foreignKeyName="USER_FC" id="LINK_FK_USER_FC_O" inverseSideOf="" javaName="userinfo" javaType="Userinfo" joinTableName="" mappedBy="" optional="UNDEFINED" owningSide="true" sourceTableName="COMMAND" targetEntity="Userinfo" targetTableName="USERINFO" used="true">
+<joinColumns>
+<joinColumn insertable="false" name="CO_US_ID" nullable="true" referencedColumnName="US_ID" unique="false" updatable="false"/>
+</joinColumns>
+</link>
+<link cardinality="ManyToOne" cascade="" fetch="DEFAULT" foreignKeyName="ARTICLE_FC" id="LINK_FK_ARTICLE_FC_O" inverseSideOf="" javaName="article" javaType="Article" joinTableName="" mappedBy="" optional="UNDEFINED" owningSide="true" sourceTableName="COMMAND" targetEntity="Article" targetTableName="ARTICLE" used="true">
+<joinColumns>
+<joinColumn insertable="false" name="CO_AR_ID" nullable="true" referencedColumnName="AR_ID" unique="false" updatable="false"/>
+</joinColumns>
+</link>
+<link cardinality="OneToMany" cascade="" fetch="DEFAULT" foreignKeyName="COMMAND_FC" id="LINK_FK_COMMAND_FC_I" inverseSideOf="LINK_FK_COMMAND_FC_O" javaName="listOfArticle" javaType="java.util.List" joinTableName="" mappedBy="command" optional="UNDEFINED" owningSide="false" sourceTableName="COMMAND" targetEntity="Article" targetTableName="ARTICLE" used="true"/>
+</table>
+<table catalog="" javaBean="Userinfo" javaBeanConv="" javaBeanDAO="" javaBeanList="" name="USERINFO" schema="APP">
+<column dbAutoIncremented="true" dbDefaultValue="AUTOINCREMENT: start 1 increment 1" dbName="US_ID" dbNotNull="true" dbPosition="1" dbPrimaryKey="true" dbSize="10" dbTypeName="INTEGER" inputType="number" javaDefaultValue="0" javaName="usId" javaType="int" jdbcTypeCode="4" label="Us Id" notNull="false" selected="true"/>
+<column dbDefaultValue="" dbName="US_PSEUDO" dbNotNull="true" dbPosition="2" dbSize="255" dbTypeName="VARCHAR" inputType="text" javaName="usPseudo" javaType="java.lang.String" jdbcTypeCode="12" label="Us Pseudo" maxLength="255" notEmpty="true" notNull="true" selected="true"/>
+<column dbDefaultValue="" dbName="US_PASSWORD" dbNotNull="true" dbPosition="3" dbSize="255" dbTypeName="VARCHAR" inputType="text" javaName="usPassword" javaType="java.lang.String" jdbcTypeCode="12" label="Us Password" maxLength="255" notEmpty="true" notNull="true" selected="true"/>
+<column dbDefaultValue="" dbName="US_NAME" dbNotNull="true" dbPosition="4" dbSize="255" dbTypeName="VARCHAR" inputType="text" javaName="usName" javaType="java.lang.String" jdbcTypeCode="12" label="Us Name" maxLength="255" notEmpty="true" notNull="true" selected="true"/>
+<column dbDefaultValue="" dbName="US_FIRSTNAME" dbNotNull="true" dbPosition="5" dbSize="255" dbTypeName="VARCHAR" inputType="text" javaName="usFirstname" javaType="java.lang.String" jdbcTypeCode="12" label="Us Firstname" maxLength="255" notEmpty="true" notNull="true" selected="true"/>
+<column dbDefaultValue="" dbName="US_ADRESS" dbNotNull="true" dbPosition="6" dbSize="255" dbTypeName="VARCHAR" inputType="text" javaName="usAdress" javaType="java.lang.String" jdbcTypeCode="12" label="Us Adress" maxLength="255" notEmpty="true" notNull="true" selected="true"/>
+<column dbDefaultValue="" dbName="US_POSTCODE" dbNotNull="true" dbPosition="7" dbSize="10" dbTypeName="INTEGER" inputType="number" javaDefaultValue="0" javaName="usPostcode" javaType="int" jdbcTypeCode="4" label="Us Postcode" notNull="false" selected="true"/>
+<column dbDefaultValue="" dbName="US_TOWN" dbNotNull="true" dbPosition="8" dbSize="255" dbTypeName="VARCHAR" inputType="text" javaName="usTown" javaType="java.lang.String" jdbcTypeCode="12" label="Us Town" maxLength="255" notEmpty="true" notNull="true" selected="true"/>
+<column dbDefaultValue="" dbName="US_COUNTRY" dbNotNull="true" dbPosition="9" dbSize="10" dbTypeName="INTEGER" inputType="number" javaDefaultValue="0" javaName="usCountry" javaType="int" jdbcTypeCode="4" label="Us Country" notNull="false" selected="true"/>
+<link cardinality="OneToMany" cascade="" fetch="DEFAULT" foreignKeyName="USER_FC" id="LINK_FK_USER_FC_I" inverseSideOf="LINK_FK_USER_FC_O" javaName="listOfCommand" javaType="java.util.List" joinTableName="" mappedBy="userinfo" optional="UNDEFINED" owningSide="false" sourceTableName="USERINFO" targetEntity="Command" targetTableName="COMMAND" used="true"/>
+</table>
+</tableList>
+</root>

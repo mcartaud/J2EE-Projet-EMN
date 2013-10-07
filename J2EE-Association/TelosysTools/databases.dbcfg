@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <databases defaultId="0" maxId="4">
-<db driver="org.apache.derby.jdbc.ClientDriver" id="0" isolationLevel="" name="Association" poolSize="1" url="jdbc:derby://localhost:1527/association">
-<property name="user" value="app"/>
+<db driver="org.apache.derby.jdbc.ClientDriver" id="0" isolationLevel="" name="DERBY database" poolSize="1" url="jdbc:derby://localhost:1527/association">
+<property name="user" value="root"/>
 <property name="password" value="admin"/>
 <metadata catalog="" schema="APP" table-name-pattern="%" table-types="TABLE"/>
 </db>
