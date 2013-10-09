@@ -17,7 +17,6 @@ public class Foo extends HttpServlet {
      */
     public Foo() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**
