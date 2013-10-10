@@ -39,7 +39,7 @@ CREATE TABLE ARTICLE (
 	CONSTRAINT catalogue_fc FOREIGN KEY (ar_ca_id) REFERENCES catalogue (ca_id)
 	);
 	
-INSERT INTO ARTICLE (code,nom,prix,stock) VALUES ('T1','Tee Shirt',55.6,12);
-INSERT INTO ARTICLE (code,nom,prix,stock) VALUES ('C2','Cle USB',9.5,45);
-INSERT INTO ARTICLE (code,nom,prix,stock) VALUES ('S3','Stylo',3.7,34);
-INSERT INTO ARTICLE (code,nom,prix,stock) VALUES ('C4','Calculatrice',20.0,4);
+INSERT INTO CATALOGUE (id,name,prix,stock) VALUES ('T1','Tee Shirt',55.6,12);
+INSERT INTO CATALOGUE (id,name,prix,stock) VALUES ('C2','Cle USB',9.5,45);
+INSERT INTO CATALOGUE (id,name,prix,stock) VALUES ('S3','Stylo',3.7,34);
+INSERT INTO CATALOGUE (id,name,prix,stock) VALUES ('C4','Calculatrice',20.0,4);

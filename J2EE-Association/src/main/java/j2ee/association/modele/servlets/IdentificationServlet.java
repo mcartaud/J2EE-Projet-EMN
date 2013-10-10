@@ -25,6 +25,7 @@ public class IdentificationServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// Forwarding the request to the associated view
 		this.getServletContext().getRequestDispatcher("/jsp/identification.jsp").forward(request, response);
+	
 	}
 
 	/**
