@@ -1,0 +1,14 @@
+Update date : Mon Oct 14 08:50:32 CEST 2013
+ 
+ Table 'ARTICLE' found in repository
+ . Foreign key 'COMMAND_FC' removed
+ (*) table 'ARTICLE' updated : 1 change(s)
+ 
+ Table 'CATALOGUE' found in repository
+ (=) table 'CATALOGUE' unchanged
+ 
+ Table 'COMMAND' found in repository
+ (=) table 'COMMAND' unchanged
+ 
+ Table 'USERINFO' found in repository
+ (=) table 'USERINFO' unchanged

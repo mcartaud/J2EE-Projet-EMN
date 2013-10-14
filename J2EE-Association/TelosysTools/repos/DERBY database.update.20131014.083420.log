@@ -1,0 +1,34 @@
+Update date : Mon Oct 14 08:34:20 CEST 2013
+ 
+ Table 'ARTICLE' not found in repository
+ (+) table 'ARTICLE' added
+ 
+ Table 'CATALOGUE' found in repository
+ . Column 'ID' removed
+ . Column 'NAME' removed
+ . Column 'PRIX' removed
+ . Column 'STOCK' removed
+ . Column 'CA_ID' added
+ . Column 'CA_CODE' added
+ . Column 'CA_NAME' added
+ . Column 'CA_PRICE' added
+ . Column 'CA_STOCK' added
+ (*) table 'CATALOGUE' updated : 9 change(s)
+ 
+ Table 'COMMAND' found in repository
+ . Column 'NUMBER' removed
+ . Column 'USERID' removed
+ . Column 'PRODUCTCODE' removed
+ . Column 'PRODUCTNUMBER' removed
+ . Column 'CO_ID' added
+ . Column 'CO_US_ID' added
+ . Column 'CO_AR_ID' added
+ . Foreign key 'ARTICLE_FC' added
+ . Foreign key 'USER_FC' added
+ (*) table 'COMMAND' updated : 9 change(s)
+ 
+ Table 'USERINFO' not found in repository
+ (+) table 'USERINFO' added
+ 
+ Table 'USERS' no longer exists in database
+ (-) table 'USERS' removed

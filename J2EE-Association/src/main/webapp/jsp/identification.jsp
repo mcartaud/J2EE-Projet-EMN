@@ -18,7 +18,7 @@
 				Identifiant <input type="text" name="id" />
 			</p>
 			<p>
-				Password <input type="passwd" name="password" />
+				Password <input type="password" name="password" />
 			</p>
 			<p>
 				<input type="submit" value="Envoyer" />

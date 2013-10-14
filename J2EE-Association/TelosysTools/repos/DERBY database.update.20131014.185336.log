@@ -1,0 +1,22 @@
+Update date : Mon Oct 14 18:53:36 CEST 2013
+ 
+ Table 'ARTICLE' found in repository
+ . Column 'AR_QUANTITY' removed
+ . Column 'AR_CA_ID' removed
+ . Column 'AR_ID' : Database type changed to INTEGER
+ . Column 'AR_ID' : JDBC type code changed to 4
+ . Column 'AR_ID' : Size changed to 10
+ . Column 'AR_CODE' added
+ . Column 'AR_NAME' added
+ . Column 'AR_PRICE' added
+ . Column 'AR_STOCK' added
+ (*) table 'ARTICLE' updated : 9 change(s)
+ 
+ Table 'USERINFO' found in repository
+ (=) table 'USERINFO' unchanged
+ 
+ Table 'CATALOGUE' no longer exists in database
+ (-) table 'CATALOGUE' removed
+ 
+ Table 'COMMAND' no longer exists in database
+ (-) table 'COMMAND' removed
