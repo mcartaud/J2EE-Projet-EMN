@@ -17,6 +17,7 @@
 <%@include file="./menuBarre.jsp" %>
 <div class="container">
 	<h1>Catalogue des articles</h1>
+	<form action="catalogue" method="post">
 	<table>
 		<thread>
 		<tr>
@@ -24,6 +25,11 @@
 			<th>Nom</th>
 			<th>Prix</th>
 			<th>Stock</th>
+			<%
+				if(request.getAttribute("user") != null) {
+					out.println("<th>Quantité</th>");
+				}
+			%>
 		</tr>
 		</thread>
 
@@ -45,11 +51,17 @@
 				out.print("<th>");
 					out.print(article.getArStock());
 				out.println("</th>");
+				// If a user is connected (-> a bean has been given) he can select the nb of article he wants
+				if(request.getAttribute("user") != null) {
+					out.println("<th><input type=\"number\" name=\""+article.getArCode()+"\" /></th>");
+				}
 				out.println("</tr>");
 			}
 		%>
 		</tbody>
 	</table>
+	<input type="submit" value="Commander"/>
+	</form>
 </div>
 </body>
 </html>
