@@ -16,9 +16,11 @@
             <li><a href="catalogue">Articles</a></li>
             <li><a href="commande">Commande</a></li>
           </ul>
-           <form class="navbar-form pull-right">
+           <form action="identification" method="get" class="navbar-form pull-right">
+           <!--
               <input class="span2" type="text" placeholder="login">
               <input class="span2" type="password" placeholder="password">
+           -->
               <button type="submit" class="btn">Connexion</button>
            </form>
         </div><!--/.nav-collapse -->

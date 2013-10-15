@@ -11,7 +11,7 @@
 <body>
 <%@include file="./menuBarre.jsp" %>
 <div class="container">
-	<form>
+	<form action="identification" method="post">
 		<fieldset>
 			<legend>Login</legend>
 			<p>
