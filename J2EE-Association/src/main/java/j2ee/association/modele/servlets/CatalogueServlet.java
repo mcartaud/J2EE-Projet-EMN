@@ -29,9 +29,13 @@ public class CatalogueServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
-	protected void doGet(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException {
-		// Forwarding the request to the associated view
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// Fetching all articles in the data base, storing them in a list of beans
+		ArticlePersistence service = PersistenceServiceProvider.getService(ArticlePersistence.class);
+		List<Article> articles = service.loadAll();
+		// Passing the list of beans to the jsp via the request
+		request.setAttribute("articles", articles);
+		// Forwarding to the jsp with the beans added
 		this.getServletContext().getRequestDispatcher("/jsp/catalogue.jsp").forward(request, response);
 	}
 
@@ -41,13 +45,6 @@ public class CatalogueServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("toto");
-		ArticlePersistence service = PersistenceServiceProvider
-                .getService(ArticlePersistence.class);
-		List<Article> articles = service.loadAll();
-		for (int i = 0; i < articles.size(); i++) {
-			System.out.println(articles.get(i).getArId());
-		}
 	}
 
 }
