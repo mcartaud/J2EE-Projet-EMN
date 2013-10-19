@@ -55,7 +55,7 @@
 				if(request.getSession().getAttribute("userName") != null) {
 					out.print("<th><input type=\"number\" name=\""+article.getArCode()+"\" /></th>");
 					if(null != request.getAttribute((String)article.getArCode())) {
-						out.println("<em class=\"\">Pas assez d\'articles en stock</em>");
+						out.println("Pas assez d\'articles en stock");
 					}else out.println();
 				}
 				out.println("</tr>");
