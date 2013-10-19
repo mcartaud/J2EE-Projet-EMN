@@ -18,11 +18,13 @@
 			<th>Code</th>
 			<th>Nom</th>
 			<th>Prix</th>
+			<th>Quantité</th>
 		</tr>
 		</thread>
 
 		<tbody>
 			<tr>
+				<th>element</th>
 				<th>element</th>
 				<th>element</th>
 				<th>element</th>
