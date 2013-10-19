@@ -18,6 +18,7 @@
             <li><a href="index">Accueil</a></li>
             <li><a href="catalogue">Articles</a></li>
             <li><a href="commande">Commande</a></li>
+            <li><a href="enregistrement">Inscription</a></li>
           </ul>
            <form action="<% out.print(param_userName==null?"identification":"deconnexion"); %>" method="get" class="navbar-form pull-right">
               <button type="submit" class="btn"><% out.print(param_userName==null?"Connexion":param_userName+": Deconnexion"); %></button>

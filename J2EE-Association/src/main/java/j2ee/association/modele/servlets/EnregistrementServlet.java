@@ -1,5 +1,6 @@
 package j2ee.association.modele.servlets;
 
+import j2ee.association.bean.Country;
 import j2ee.association.bean.Userinfo;
 import j2ee.association.persistence.PersistenceServiceProvider;
 import j2ee.association.persistence.services.UserinfoPersistence;
@@ -63,12 +64,17 @@ public class EnregistrementServlet extends HttpServlet {
 			UserinfoPersistence persistence) {
 		Userinfo newUser = new Userinfo();
 		newUser.setUsPseudo(userInformations.get("userID")[0]);
-		newUser.setUsPassword(userInformations.get("userName")[0]);
+		newUser.setUsPassword(userInformations.get("userPassword")[0]);
 		newUser.setUsName(userInformations.get("userName")[0]);
-		newUser.setUsFirstname(userInformations.get("userName")[0]);
-		newUser.setUsAdress(userInformations.get("userName")[0]);
-		newUser.setUsPostcode(Integer.parseInt(userInformations.get("userName")[0]));
-		newUser.setUsTown(userInformations.get("userName")[0]);
+		newUser.setUsFirstname(userInformations.get("userFirstname")[0]);
+		newUser.setUsAdress(userInformations.get("userAdress")[0]);
+		newUser.setUsPostcode(Integer.parseInt(userInformations.get("userPostcode")[0]));
+		newUser.setUsTown(userInformations.get("userTown")[0]);
+		Country country = new Country();
+		country.setCoName();
+		newUser.setCountry(country);
+		
+		int country = Integer.parseInt(userInformations.get("userCountry")[0]);
 		return false;
 	}
 

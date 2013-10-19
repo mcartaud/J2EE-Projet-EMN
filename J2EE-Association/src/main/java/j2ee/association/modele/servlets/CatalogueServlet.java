@@ -50,22 +50,31 @@ public class CatalogueServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		checkParameter(request);
+		if (checkParameter(request)){
+			request.setAttribute("command", command);
+			response.sendRedirect(request.getContextPath()+"/catalogue");
+		} else {
+			System.out.println("erreur interne");
+		}
 	}
 
 	/**
 	 * Checks all POST parameters to determine whether it has been ordered or not
 	 * @param request the HTTP request pushed by the user
 	 */
-	private void checkParameter(HttpServletRequest request) {
+	private boolean checkParameter(HttpServletRequest request) {
 		Enumeration<String> attributeName = request.getAttributeNames();
 		while (attributeName.hasMoreElements()) {
 			String string = (String) attributeName.nextElement();
 			int commandNumber = Integer.parseInt(request.getParameter(string));
 			if (commandNumber >= 0) {
-				getProduct(string, commandNumber);
+				boolean retour = getProduct(string, commandNumber);
+				if (!retour) {
+					return retour;
+				}
 			}
 		}
+		return true;
 	}
 
 	/**
@@ -83,18 +92,16 @@ public class CatalogueServlet extends HttpServlet {
 		if (informations.size() != 1) {
 			return false;
 		} else {
-			return checkQuantity(quantity, informations.get(0), persistence);
+			checkQuantity(quantity, informations.get(0), persistence);
+			return true;
 		}
 	}
 
-	private boolean checkQuantity(int quantity, Article article, ArticlePersistence persistence) {
+	private void checkQuantity(int quantity, Article article, ArticlePersistence persistence) {
 		if (article.getArStock() < quantity) {
-			return false;
+			command.put(article.getArCode(), -quantity);
 		} else {
 			command.put(article.getArCode(), quantity);
-			int oldValue = article.getArStock();
-			article.setArStock(oldValue - quantity);
-			return true;
 		}
 	}
 	
