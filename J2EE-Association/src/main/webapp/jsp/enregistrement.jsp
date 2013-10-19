@@ -1,5 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@ page language="java"
+	contentType="text/html;
+	charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"
+	import="j2ee.association.bean.Country,
+			java.util.List"
+%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
   <head>
@@ -26,8 +31,22 @@
 
       <form class="form-signin">
         <h2 class="form-signin-heading">Enregistrement</h2>
-        <input type="text" class="form-control" placeholder="Email address" autofocus>
-        <input type="password" class="form-control" placeholder="Password">
+        <input type="text" class="form-control" placeholder="Pseudo" name="userID" autofocus>
+        <input type="password" class="form-control" placeholder="Password" name="userPassword">
+        <input type="text" class="form-control" placeholder="Nom" name="userName" autofocus>
+        <input type="text" class="form-control" placeholder="Prénom" name="userFirstName" autofocus>
+        <input type="text" class="form-control" placeholder="Adresse" name="userAddress" autofocus>
+        <input type="text" class="form-control" placeholder="Code Postal" name="userPostcode" autofocus>
+        <input type="text" class="form-control" placeholder="Ville" name="userTown" autofocus>
+        <select name="userCountry">
+        	<%
+        	List<Country> countries = (List<Country>)request.getAttribute("countries");
+    		for(int i=0; i<countries.size(); i++) {
+    			Country country = countries.get(i);
+        		out.println("<option value=\""+country.getCoName()+"\">"+country.getCoName()+"</option>");
+    		}
+        	%>
+        </select>
         <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
       </form>
 

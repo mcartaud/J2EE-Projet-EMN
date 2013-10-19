@@ -3,6 +3,7 @@ package j2ee.association.modele.servlets;
 import j2ee.association.bean.Country;
 import j2ee.association.bean.Userinfo;
 import j2ee.association.persistence.PersistenceServiceProvider;
+import j2ee.association.persistence.services.CountryPersistence;
 import j2ee.association.persistence.services.UserinfoPersistence;
 
 import java.io.IOException;
@@ -33,6 +34,9 @@ public class EnregistrementServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// Forwarding the request to the associated view
+		CountryPersistence service = PersistenceServiceProvider.getService(CountryPersistence.class);
+		List<Country> countries = service.loadAll();
+		request.setAttribute("countries", countries);
 		this.getServletContext().getRequestDispatcher("/jsp/enregistrement.jsp").forward(request, response);
 	}
 
