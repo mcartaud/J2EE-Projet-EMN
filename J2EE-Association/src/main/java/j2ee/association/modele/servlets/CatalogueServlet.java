@@ -1,12 +1,10 @@
 package j2ee.association.modele.servlets;
 
 import j2ee.association.bean.Article;
-import j2ee.association.bean.Userinfo;
 import j2ee.association.persistence.PersistenceServiceProvider;
 import j2ee.association.persistence.services.ArticlePersistence;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.List;
