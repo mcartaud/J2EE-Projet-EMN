@@ -41,9 +41,9 @@ public class IdentificationServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.getSession().invalidate();
 		if (connectUser(request)) {			
-			response.sendRedirect(request.getContextPath()+"/IndexServlet");
+			response.sendRedirect(request.getContextPath()+"/index");
 		} else {
-			response.sendRedirect(request.getContextPath()+"/IdentificationServlet");
+			response.sendRedirect(request.getContextPath()+"/identification");
 		}
 	}
 
