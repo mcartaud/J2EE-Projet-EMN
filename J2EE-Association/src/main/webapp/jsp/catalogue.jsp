@@ -52,7 +52,7 @@
 					out.print(article.getArStock());
 				out.println("</th>");
 				// If a user is connected (-> a bean has been given) he can select the nb of article he wants
-				if(request.getAttribute("user") != null) {
+				if(request.getSession().getAttribute("userName") != null) {
 					out.println("<th><input type=\"number\" name=\""+article.getArCode()+"\" /></th>");
 				}
 				out.println("</tr>");
