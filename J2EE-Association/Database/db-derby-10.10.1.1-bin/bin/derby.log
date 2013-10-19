@@ -1,14 +1,13 @@
-Tue Oct 15 09:25:43 CEST 2013 : Apache Derby Network Server - 10.10.1.1 - (1458268) d√©marr√© et pr√™t √† accepter les connexions sur le port 1527
 ----------------------------------------------------------------
-Tue Oct 15 09:50:58 CEST 2013:
-Amor√ßage de Derby version The Apache Software Foundation - Apache Derby - 10.10.1.1 - (1458268) : instance a816c00e-0141-bb01-8eec-000056de4541 
-dans le r√©pertoire de base de donn√©es /home/thibault/Documents/EMN/Semestre 3/Java EE/TP/J2EE-Projet-EMN/J2EE-Association/Database/db-derby-10.10.1.1-bin/bin/association avec le chargeur de classe sun.misc.Launcher$AppClassLoader@47415dbf
-Charg√© de file:/home/thibault/Documents/EMN/Semestre%203/Java%20EE/TP/J2EE-Projet-EMN/J2EE-Association/Database/db-derby-10.10.1.1-bin/lib/derby.jar
+Sat Oct 19 09:47:19 CEST 2013:
+AmorÁage de Derby version The Apache Software Foundation - Apache Derby - 10.10.1.1 - (1458268) : instance a816c00e-0141-cfae-c4f8-000003141690 
+dans le rÈpertoire de base de donnÈes E:\Users\mathieu\Google Drive\EMN\Annee-2\Workspaces\Info\Infrastructures_integration\J2EE-Projet-EMN\J2EE-Association\Database\db-derby-10.10.1.1-bin\bin\association avec le chargeur de classe sun.misc.Launcher$AppClassLoader@752a2259
+ChargÈ de file:/E:/Users/mathieu/Google%20Drive/EMN/Annee-2/Workspaces/Info/Infrastructures_integration/J2EE-Projet-EMN/J2EE-Association/Database/db-derby-10.10.1.1-bin/lib/derby.jar
 java.vendor=Oracle Corporation
-java.runtime.version=1.7.0_25-b30
-user.dir=/home/thibault/Documents/EMN/Semestre 3/Java EE/TP/J2EE-Projet-EMN/J2EE-Association/Database/db-derby-10.10.1.1-bin/bin
-os.name=Linux
+java.runtime.version=1.7.0_25-b17
+user.dir=E:\Users\mathieu\Google Drive\EMN\Annee-2\Workspaces\Info\Infrastructures_integration\J2EE-Projet-EMN\J2EE-Association\Database\db-derby-10.10.1.1-bin\bin
+os.name=Windows 7
 os.arch=amd64
-os.version=3.8.0-31-generic
-derby.system.home=/home/thibault/Documents/EMN/Semestre 3/Java EE/TP/J2EE-Projet-EMN/J2EE-Association/Database/db-derby-10.10.1.1-bin/bin
-Chargeur de classe de la base de donn√©es d√©marr√© - derby.database.classpath = ''
+os.version=6.1
+derby.system.home=null
+Chargeur de classe de la base de donnÈes dÈmarrÈ - derby.database.classpath = ''

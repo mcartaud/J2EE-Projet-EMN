@@ -24,3 +24,4 @@ INSERT INTO ARTICLE (ar_code,ar_name,ar_price,ar_stock) VALUES ('T1','Tee Shirt'
 INSERT INTO ARTICLE (ar_code,ar_name,ar_price,ar_stock) VALUES ('C2','Cle USB',9.5,45);
 INSERT INTO ARTICLE (ar_code,ar_name,ar_price,ar_stock) VALUES ('S3','Stylo',3.7,34);
 INSERT INTO ARTICLE (ar_code,ar_name,ar_price,ar_stock) VALUES ('C4','Calculatrice',20.0,4);
+INSERT INTO USERINFO (us_pseudo, us_password, us_name, us_firstName, us_adress, us_postcode, us_town, us_country) VALUES ('toto', 'tata', 'doe', 'john', 'a la maison', 44300, 'rouen', 1);
