@@ -105,10 +105,12 @@ public class CatalogueServlet extends HttpServlet {
 	}
 
 	private void checkQuantity(int quantity, Article article, ArticlePersistence persistence, HttpServletRequest request) {
-		if (article.getArStock() < quantity) {
-			request.setAttribute(article.getArId(), false);
+		int number = command.get(article.getArCode());
+		number = number+quantity;
+		if (article.getArStock() < number) {
+			request.setAttribute(article.getArCode(), false);
 		} else {
-			command.put(article.getArCode(), quantity);
+			command.put(article.getArCode(), number);
 		}
 	}
 	
