@@ -53,17 +53,28 @@ public class CatalogueServlet extends HttpServlet {
 		checkParameter(request);
 	}
 
+	/**
+	 * Checks all POST parameters to determine whether it has been ordered or not
+	 * @param request the HTTP request pushed by the user
+	 */
 	private void checkParameter(HttpServletRequest request) {
 		Enumeration<String> attributeName = request.getAttributeNames();
 		while (attributeName.hasMoreElements()) {
 			String string = (String) attributeName.nextElement();
 			int commandNumber = Integer.parseInt(request.getParameter(string));
-			if (commandNumber != 0) {
+			if (commandNumber >= 0) {
 				getProduct(string, commandNumber);
 			}
 		}
 	}
 
+	/**
+	 * For the article <code>code</code>, checks in database if the quantity <code>quantity</code> is available.
+	 * If so, it pulls <code>quantity</code> articles out of the database
+	 * @param code The code of the product to order
+	 * @param quantity The quantity willingly to be ordered
+	 * @return <code>true</code> if the order was successfull, <code>false if not</code>
+	 */
 	private boolean getProduct(String code, int quantity) {
 		Map<String, Object> name = new HashMap<String, Object>();
 		name.put("arCode", code);
