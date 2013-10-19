@@ -44,11 +44,16 @@ public class EnregistrementServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		checkUser(request);
+		boolean userCreated = createUser(request);
+		if (userCreated) {
+			response.sendRedirect(request.getContextPath()+"/identification");
+		} else {
+			response.sendRedirect(request.getContextPath()+"/enregistrement");
+		}
 		
 	}
 
-	private boolean checkUser(HttpServletRequest request) {
+	private boolean createUser(HttpServletRequest request) {
 		Map<String, String[]> userInformations = request.getParameterMap();
 		Map<String, Object> name = new HashMap<String, Object>();
 		
@@ -58,28 +63,27 @@ public class EnregistrementServlet extends HttpServlet {
 		UserinfoPersistence persistence = PersistenceServiceProvider.getService(UserinfoPersistence.class);
 		List<Userinfo> informations = persistence.search(name);
 		if (informations.size() == 0) {
-			return addUser(userInformations, persistence);
+			addUser(userInformations, persistence);
+			return true;
 		} else {
 			return false;
 		}
 	}
 
-	private boolean addUser(Map<String, String[]> userInformations,
+	private void addUser(Map<String, String[]> userInformations,
 			UserinfoPersistence persistence) {
+		CountryPersistence countryPersistence = PersistenceServiceProvider.getService(CountryPersistence.class);
 		Userinfo newUser = new Userinfo();
 		newUser.setUsPseudo(userInformations.get("userID")[0]);
 		newUser.setUsPassword(userInformations.get("userPassword")[0]);
 		newUser.setUsName(userInformations.get("userName")[0]);
-		newUser.setUsFirstname(userInformations.get("userFirstname")[0]);
-		newUser.setUsAdress(userInformations.get("userAdress")[0]);
+		newUser.setUsFirstname(userInformations.get("userFirstName")[0]);
+		newUser.setUsAdress(userInformations.get("userAddress")[0]);
 		newUser.setUsPostcode(Integer.parseInt(userInformations.get("userPostcode")[0]));
 		newUser.setUsTown(userInformations.get("userTown")[0]);
-		Country country = new Country();
-		country.setCoName();
-		newUser.setCountry(country);
-		
 		int country = Integer.parseInt(userInformations.get("userCountry")[0]);
-		return false;
+		newUser.setCountry(countryPersistence.load(country));
+		
+		persistence.insert(newUser);
 	}
-
 }

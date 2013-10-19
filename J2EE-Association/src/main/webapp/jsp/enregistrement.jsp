@@ -29,7 +29,7 @@
 
     <div class="container">
 
-      <form class="form-signin">
+      <form class="form-signin" action="enregistrement" method="post">
         <h2 class="form-signin-heading">Enregistrement</h2>
         <input type="text" class="form-control" placeholder="Pseudo" name="userID" autofocus>
         <input type="password" class="form-control" placeholder="Password" name="userPassword">
@@ -43,7 +43,7 @@
         	List<Country> countries = (List<Country>)request.getAttribute("countries");
     		for(int i=0; i<countries.size(); i++) {
     			Country country = countries.get(i);
-        		out.println("<option value=\""+country.getCoName()+"\">"+country.getCoName()+"</option>");
+        		out.println("<option value=\""+country.getCoId()+"\">"+country.getCoName()+"</option>");
     		}
         	%>
         </select>
