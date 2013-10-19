@@ -43,7 +43,7 @@ public class IdentificationServlet extends HttpServlet {
 		if (connectUser(request)) {			
 			response.sendRedirect(request.getContextPath()+"/IndexServlet");
 		} else {
-			response.sendRedirect(request.getContextPath()+"IdentificationServlet");
+			response.sendRedirect(request.getContextPath()+"/IdentificationServlet");
 		}
 	}
 
