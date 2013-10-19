@@ -60,7 +60,7 @@ public class IdentificationServlet extends HttpServlet {
 	
 	private boolean checkUnicity(String userName, String userPasswd){
 		Map<String, Object> name = new HashMap<String, Object>();
-		name.put("usPseudo = ", userName);
+		name.put("usPseudo", userName);
 		UserinfoPersistence service = PersistenceServiceProvider.getService(UserinfoPersistence.class);
 		List<Userinfo> informations = service.search(name);
 		if (informations.size() != 1) {
@@ -71,7 +71,7 @@ public class IdentificationServlet extends HttpServlet {
 	}
 
 	private boolean checkUser(String userName, String userPasswd, Userinfo userInfo) {
-		if (userName.equals(userInfo.getUsId())) {
+		if (userName.equals(userInfo.getUsPseudo())) {
 			if (userPasswd.equals(userInfo.getUsPassword())) {
 				return true;
 			}

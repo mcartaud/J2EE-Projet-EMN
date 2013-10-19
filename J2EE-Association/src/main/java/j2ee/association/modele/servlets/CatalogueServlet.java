@@ -1,11 +1,16 @@
 package j2ee.association.modele.servlets;
 
 import j2ee.association.bean.Article;
+import j2ee.association.bean.Userinfo;
 import j2ee.association.persistence.PersistenceServiceProvider;
 import j2ee.association.persistence.services.ArticlePersistence;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Enumeration;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -17,6 +22,8 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class CatalogueServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	
+	private Map<String, Integer> command = new HashMap<>();
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -45,6 +52,43 @@ public class CatalogueServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
+		checkParameter(request);
 	}
+
+	private void checkParameter(HttpServletRequest request) {
+		Enumeration<String> attributeName = request.getAttributeNames();
+		while (attributeName.hasMoreElements()) {
+			String string = (String) attributeName.nextElement();
+			int commandNumber = Integer.parseInt(request.getParameter(string));
+			if (commandNumber != 0) {
+				getProduct(string, commandNumber);
+			}
+		}
+	}
+
+	private boolean getProduct(String code, int quantity) {
+		Map<String, Object> name = new HashMap<String, Object>();
+		name.put("arCode", code);
+		ArticlePersistence persistence = PersistenceServiceProvider.getService(ArticlePersistence.class);
+		List<Article> informations = persistence.search(name);
+		if (informations.size() != 1) {
+			return false;
+		} else {
+			return checkQuantity(quantity, informations.get(0), persistence);
+		}
+	}
+
+	private boolean checkQuantity(int quantity, Article article, ArticlePersistence persistence) {
+		if (article.getArStock() < quantity) {
+			return false;
+		} else {
+			command.put(article.getArCode(), quantity);
+			int oldValue = article.getArStock();
+			article.setArStock(oldValue - quantity);
+			return true;
+		}
+	}
+	
+	
 
 }
