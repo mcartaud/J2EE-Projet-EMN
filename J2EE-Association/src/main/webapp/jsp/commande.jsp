@@ -1,5 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@ page language="java"
+		 contentType="text/html; charset=ISO-8859-1"
+		 pageEncoding="ISO-8859-1"
+		 import="j2ee.association.bean.Article,
+		 		 java.util.List,
+				 java.util.Map,
+				 java.util.Set"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -23,12 +28,27 @@
 		</thread>
 
 		<tbody>
-			<tr>
-				<th>element</th>
-				<th>element</th>
-				<th>element</th>
-				<th>element</th>
-			</tr>
+<!-- 			<tr> -->
+<!-- 				<th>element</th> -->
+<!-- 				<th>element</th> -->
+<!-- 				<th>element</th> -->
+<!-- 				<th>element</th> -->
+<!-- 			</tr> -->
+			<%
+				List<Article> articles = (List<Article>)request.getAttribute("articles");
+				Map<String, Integer> command = (Map<String,Integer>)request.getAttribute("command");
+				
+				for(Article article : articles) {
+					if(command.containsKey(article.getArCode())) {
+						out.println("<tr>");
+						out.println("<th>"+article.getArCode()+"</th>");
+						out.println("<th>"+article.getArName()+"</th>");
+						out.println("<th>"+article.getArPrice()+"</th>");
+						out.println("<th>"+command.get(article.getArCode())+"</th>");
+						out.println("</tr>");
+					}
+				}
+			%>
 		</tbody>
 	</table>
 
