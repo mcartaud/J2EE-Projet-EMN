@@ -69,7 +69,6 @@ public class EnregistrementServlet extends HttpServlet {
 		newUser.setUsAdress(userInformations.get("userName")[0]);
 		newUser.setUsPostcode(Integer.parseInt(userInformations.get("userName")[0]));
 		newUser.setUsTown(userInformations.get("userName")[0]);
-		newUser.setUsCountry(Integer.parseInt(userInformations.get("userName")[0]));
 		return false;
 	}
 

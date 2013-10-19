@@ -12,13 +12,15 @@ import java.io.Serializable;
 //import org.hibernate.validator.constraints.* ;
 
 
+import java.util.List;
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
- * Persistent class for entity stored in table "ARTICLE"
+ * Persistent class for entity stored in table "COUNTRY"
  *
  * @author Telosys Tools Generator
  *
@@ -26,13 +28,13 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement  // JAXB annotation for REST Web Services
 @XmlAccessorType(XmlAccessType.PROPERTY) // JAXB accessor = getter/setter pair
 @Entity
-@Table(name="ARTICLE", schema="APP" )
+@Table(name="COUNTRY", schema="APP" )
 // Define named queries here
 // @NamedQueries ( {
-//  @NamedQuery ( name="Article.query1", query="SELECT x FROM Article x WHERE  " ),
-//  @NamedQuery ( name="Article.query2", query="SELECT x FROM Article x WHERE  " )
+//  @NamedQuery ( name="Country.query1", query="SELECT x FROM Country x WHERE  " ),
+//  @NamedQuery ( name="Country.query2", query="SELECT x FROM Country x WHERE  " )
 // } )
-public class Article implements Serializable
+public class Country implements Serializable
 {
     private static final long serialVersionUID = 1L;
 
@@ -40,35 +42,30 @@ public class Article implements Serializable
     // ENTITY PRIMARY KEY ( BASED ON A SINGLE FIELD )
     //----------------------------------------------------------------------
     @Id
-    @Column(name="AR_ID", nullable=false)
-    private String     arId         ;
+    @GeneratedValue(strategy=GenerationType.AUTO)
+    @Column(name="CO_ID", nullable=false)
+    private int        coId         ;
 
 
     //----------------------------------------------------------------------
     // ENTITY DATA FIELDS 
     //----------------------------------------------------------------------    
-    @Column(name="AR_CODE", nullable=false, length=2)
-    private String     arCode       ;
-
-    @Column(name="AR_NAME", nullable=false, length=255)
-    private String     arName       ;
-
-    @Column(name="AR_PRICE", nullable=false)
-    private double     arPrice      ;
-
-    @Column(name="AR_STOCK", nullable=false)
-    private int        arStock      ;
+    @Column(name="CO_NAME", nullable=false, length=255)
+    private String     coName       ;
 
 
 
     //----------------------------------------------------------------------
     // ENTITY LINKS ( RELATIONSHIP )
     //----------------------------------------------------------------------
+    @OneToMany(mappedBy="country", targetEntity=Userinfo.class)
+    private List<Userinfo> listOfUserinfo;
+
 
     //----------------------------------------------------------------------
     // CONSTRUCTOR(S)
     //----------------------------------------------------------------------
-    public Article()
+    public Country()
     {
 		super();
     }
@@ -76,62 +73,42 @@ public class Article implements Serializable
     //----------------------------------------------------------------------
     // GETTER & SETTER FOR THE KEY FIELD
     //----------------------------------------------------------------------
-    public void setArId( String arId )
+    public void setCoId( int coId )
     {
-        this.arId = arId ;
+        this.coId = coId ;
     }
-    public String getArId()
+    public int getCoId()
     {
-        return this.arId;
+        return this.coId;
     }
 
     //----------------------------------------------------------------------
     // GETTERS & SETTERS FOR FIELDS
     //----------------------------------------------------------------------
-    //--- DATABASE MAPPING : AR_CODE ( VARCHAR ) 
-    public void setArCode( String arCode )
+    //--- DATABASE MAPPING : CO_NAME ( VARCHAR ) 
+    public void setCoName( String coName )
     {
-        this.arCode = arCode;
+        this.coName = coName;
     }
-    public String getArCode()
+    public String getCoName()
     {
-        return this.arCode;
-    }
-
-    //--- DATABASE MAPPING : AR_NAME ( VARCHAR ) 
-    public void setArName( String arName )
-    {
-        this.arName = arName;
-    }
-    public String getArName()
-    {
-        return this.arName;
-    }
-
-    //--- DATABASE MAPPING : AR_PRICE ( DOUBLE ) 
-    public void setArPrice( double arPrice )
-    {
-        this.arPrice = arPrice;
-    }
-    public double getArPrice()
-    {
-        return this.arPrice;
-    }
-
-    //--- DATABASE MAPPING : AR_STOCK ( INTEGER ) 
-    public void setArStock( int arStock )
-    {
-        this.arStock = arStock;
-    }
-    public int getArStock()
-    {
-        return this.arStock;
+        return this.coName;
     }
 
 
     //----------------------------------------------------------------------
     // GETTERS & SETTERS FOR LINKS
     //----------------------------------------------------------------------
+    @XmlTransient
+    public void setListOfUserinfo( List<Userinfo> listOfUserinfo )
+    {
+        this.listOfUserinfo = listOfUserinfo;
+    }
+    public List<Userinfo> getListOfUserinfo()
+    {
+        return this.listOfUserinfo;
+    }
+
 
     //----------------------------------------------------------------------
     // toString METHOD
@@ -139,15 +116,9 @@ public class Article implements Serializable
     public String toString()
     {
         StringBuffer sb = new StringBuffer(); 
-        sb.append(arId); 
+        sb.append(coId); 
         sb.append("|"); 
-        sb.append(arCode); 
-        sb.append( "|" ); 
-        sb.append(arName); 
-        sb.append( "|" ); 
-        sb.append(arPrice); 
-        sb.append( "|" ); 
-        sb.append(arStock); 
+        sb.append(coName); 
         return sb.toString(); 
     }
 

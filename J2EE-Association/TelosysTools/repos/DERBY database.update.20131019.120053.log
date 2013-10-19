@@ -1,0 +1,13 @@
+Update date : Sat Oct 19 12:00:53 CEST 2013
+ 
+ Table 'ARTICLE' found in repository
+ (=) table 'ARTICLE' unchanged
+ 
+ Table 'COUNTRY' not found in repository
+ (+) table 'COUNTRY' added
+ 
+ Table 'USERINFO' found in repository
+ . Column 'US_COUNTRY' removed
+ . Column 'US_CO_COUNTRY' added
+ . Foreign key 'COUNTRY_FC' added
+ (*) table 'USERINFO' updated : 3 change(s)

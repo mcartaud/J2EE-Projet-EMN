@@ -8,6 +8,11 @@
 <column dbDefaultValue="" dbName="AR_PRICE" dbNotNull="true" dbPosition="4" dbSize="52" dbTypeName="DOUBLE" inputType="number" javaDefaultValue="0" javaName="arPrice" javaType="double" jdbcTypeCode="8" label="Ar Price" notNull="false" selected="true"/>
 <column dbDefaultValue="" dbName="AR_STOCK" dbNotNull="true" dbPosition="5" dbSize="10" dbTypeName="INTEGER" inputType="number" javaDefaultValue="0" javaName="arStock" javaType="int" jdbcTypeCode="4" label="Ar Stock" notNull="false" selected="true"/>
 </table>
+<table catalog="" javaBean="Country" javaBeanConv="" javaBeanDAO="" javaBeanList="" name="COUNTRY" schema="APP">
+<column dbAutoIncremented="true" dbDefaultValue="AUTOINCREMENT: start 1 increment 1" dbName="CO_ID" dbNotNull="true" dbPosition="1" dbPrimaryKey="true" dbSize="10" dbTypeName="INTEGER" inputType="number" javaDefaultValue="0" javaName="coId" javaType="int" jdbcTypeCode="4" label="Co Id" notNull="false" selected="true"/>
+<column dbDefaultValue="" dbName="CO_NAME" dbNotNull="true" dbPosition="2" dbSize="255" dbTypeName="VARCHAR" inputType="text" javaName="coName" javaType="java.lang.String" jdbcTypeCode="12" label="Co Name" maxLength="255" notEmpty="true" notNull="true" selected="true"/>
+<link cardinality="OneToMany" cascade="" fetch="DEFAULT" foreignKeyName="COUNTRY_FC" id="LINK_FK_COUNTRY_FC_I" inverseSideOf="LINK_FK_COUNTRY_FC_O" javaName="listOfUserinfo" javaType="java.util.List" joinTableName="" mappedBy="country" optional="UNDEFINED" owningSide="false" sourceTableName="COUNTRY" targetEntity="Userinfo" targetTableName="USERINFO" used="true"/>
+</table>
 <table catalog="" javaBean="Userinfo" javaBeanConv="" javaBeanDAO="" javaBeanList="" name="USERINFO" schema="APP">
 <column dbAutoIncremented="true" dbDefaultValue="AUTOINCREMENT: start 1 increment 1" dbName="US_ID" dbNotNull="true" dbPosition="1" dbPrimaryKey="true" dbSize="10" dbTypeName="INTEGER" inputType="number" javaDefaultValue="0" javaName="usId" javaType="int" jdbcTypeCode="4" label="Us Id" notNull="false" selected="true"/>
 <column dbDefaultValue="" dbName="US_PSEUDO" dbNotNull="true" dbPosition="2" dbSize="255" dbTypeName="VARCHAR" inputType="text" javaName="usPseudo" javaType="java.lang.String" jdbcTypeCode="12" label="Us Pseudo" maxLength="255" notEmpty="true" notNull="true" selected="true"/>
@@ -17,7 +22,15 @@
 <column dbDefaultValue="" dbName="US_ADRESS" dbNotNull="true" dbPosition="6" dbSize="255" dbTypeName="VARCHAR" inputType="text" javaName="usAdress" javaType="java.lang.String" jdbcTypeCode="12" label="Us Adress" maxLength="255" notEmpty="true" notNull="true" selected="true"/>
 <column dbDefaultValue="" dbName="US_POSTCODE" dbNotNull="true" dbPosition="7" dbSize="10" dbTypeName="INTEGER" inputType="number" javaDefaultValue="0" javaName="usPostcode" javaType="int" jdbcTypeCode="4" label="Us Postcode" notNull="false" selected="true"/>
 <column dbDefaultValue="" dbName="US_TOWN" dbNotNull="true" dbPosition="8" dbSize="255" dbTypeName="VARCHAR" inputType="text" javaName="usTown" javaType="java.lang.String" jdbcTypeCode="12" label="Us Town" maxLength="255" notEmpty="true" notNull="true" selected="true"/>
-<column dbDefaultValue="" dbName="US_COUNTRY" dbNotNull="true" dbPosition="9" dbSize="10" dbTypeName="INTEGER" inputType="number" javaDefaultValue="0" javaName="usCountry" javaType="int" jdbcTypeCode="4" label="Us Country" notNull="false" selected="true"/>
+<column dbDefaultValue="" dbForeignKey="true" dbName="US_CO_COUNTRY" dbNotNull="true" dbPosition="9" dbSize="10" dbTypeName="INTEGER" inputType="number" javaDefaultValue="0" javaName="usCoCountry" javaType="int" jdbcTypeCode="4" label="Us Co Country" notNull="false" selected="true"/>
+<fk name="COUNTRY_FC">
+<fkcol colname="US_CO_COUNTRY" colref="CO_ID" deferrable="7" deleterule="3" sequence="1" tablename="USERINFO" tableref="COUNTRY" updaterule="3"/>
+</fk>
+<link cardinality="ManyToOne" cascade="" fetch="DEFAULT" foreignKeyName="COUNTRY_FC" id="LINK_FK_COUNTRY_FC_O" inverseSideOf="" javaName="country" javaType="Country" joinTableName="" mappedBy="" optional="UNDEFINED" owningSide="true" sourceTableName="USERINFO" targetEntity="Country" targetTableName="COUNTRY" used="true">
+<joinColumns>
+<joinColumn insertable="false" name="US_CO_COUNTRY" nullable="true" referencedColumnName="CO_ID" unique="false" updatable="false"/>
+</joinColumns>
+</link>
 </table>
 </tableList>
 </root>
