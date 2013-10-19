@@ -23,7 +23,7 @@ public class DeconnexionServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// Forwarding the request to the associated view		
 		request.getSession().invalidate();
-		response.sendRedirect(request.getContextPath()+"/IdentificationServlet");
+		response.sendRedirect(request.getContextPath()+"/identification");
 	}
     
 }

@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%
+	String param_userName = (String)request.getSession().getAttribute("userName");
+%>
  <div class="navbar navbar-inverse navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
@@ -16,12 +19,8 @@
             <li><a href="catalogue">Articles</a></li>
             <li><a href="commande">Commande</a></li>
           </ul>
-           <form action="identification" method="get" class="navbar-form pull-right">
-           <!--
-              <input class="span2" type="text" placeholder="login">
-              <input class="span2" type="password" placeholder="password">
-           -->
-              <button type="submit" class="btn">Connexion</button>
+           <form action="<% out.print(param_userName==null?"identification":"deconnexion"); %>" method="get" class="navbar-form pull-right">
+              <button type="submit" class="btn"><% out.print(param_userName==null?"Connexion":param_userName+": Deconnexion"); %></button>
            </form>
         </div><!--/.nav-collapse -->
       </div>
