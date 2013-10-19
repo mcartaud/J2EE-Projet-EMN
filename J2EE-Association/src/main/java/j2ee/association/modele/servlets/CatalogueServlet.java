@@ -14,6 +14,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  * Servlet implementation class CatalogueServlet
@@ -21,7 +22,7 @@ import javax.servlet.http.HttpServletResponse;
 public class CatalogueServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
-	private Map<String, Integer> command = new HashMap<>();
+	private Map<String, Integer> command;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -48,8 +49,14 @@ public class CatalogueServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
+	@SuppressWarnings("unchecked")
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
+		HttpSession session = request.getSession();
+		command = (Map<String, Integer>) session.getAttribute("command");
+		if (command == null) {
+			command = new HashMap<>();
+		}
 		if (checkParameter(request)){
 			request.setAttribute("command", command);
 			response.sendRedirect(request.getContextPath()+"/catalogue");
@@ -68,7 +75,7 @@ public class CatalogueServlet extends HttpServlet {
 			String string = (String) attributeName.nextElement();
 			int commandNumber = Integer.parseInt(request.getParameter(string));
 			if (commandNumber >= 0) {
-				boolean retour = getProduct(string, commandNumber);
+				boolean retour = getProduct(string, commandNumber, request);
 				if (!retour) {
 					return retour;
 				}
@@ -84,7 +91,7 @@ public class CatalogueServlet extends HttpServlet {
 	 * @param quantity The quantity willingly to be ordered
 	 * @return <code>true</code> if the order was successfull, <code>false if not</code>
 	 */
-	private boolean getProduct(String code, int quantity) {
+	private boolean getProduct(String code, int quantity, HttpServletRequest request) {
 		Map<String, Object> name = new HashMap<String, Object>();
 		name.put("arCode", code);
 		ArticlePersistence persistence = PersistenceServiceProvider.getService(ArticlePersistence.class);
@@ -92,14 +99,14 @@ public class CatalogueServlet extends HttpServlet {
 		if (informations.size() != 1) {
 			return false;
 		} else {
-			checkQuantity(quantity, informations.get(0), persistence);
+			checkQuantity(quantity, informations.get(0), persistence, request);
 			return true;
 		}
 	}
 
-	private void checkQuantity(int quantity, Article article, ArticlePersistence persistence) {
+	private void checkQuantity(int quantity, Article article, ArticlePersistence persistence, HttpServletRequest request) {
 		if (article.getArStock() < quantity) {
-			command.put(article.getArCode(), -quantity);
+			request.setAttribute(article.getArId(), false);
 		} else {
 			command.put(article.getArCode(), quantity);
 		}
