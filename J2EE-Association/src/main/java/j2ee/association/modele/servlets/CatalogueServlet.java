@@ -70,10 +70,14 @@ public class CatalogueServlet extends HttpServlet {
 	 * @param request the HTTP request pushed by the user
 	 */
 	private boolean checkParameter(HttpServletRequest request) {
-		Enumeration<String> attributeName = request.getAttributeNames();
+		Enumeration<String> attributeName = request.getParameterNames();
 		while (attributeName.hasMoreElements()) {
 			String string = (String) attributeName.nextElement();
-			int commandNumber = Integer.parseInt(request.getParameter(string));
+			String param = request.getParameter(string);
+			int commandNumber = 0;
+			if (param != "") {
+				commandNumber = Integer.parseInt(param);				
+			}
 			if (commandNumber >= 0) {
 				boolean retour = getProduct(string, commandNumber, request);
 				if (!retour) {
@@ -105,7 +109,10 @@ public class CatalogueServlet extends HttpServlet {
 	}
 
 	private void checkQuantity(int quantity, Article article, ArticlePersistence persistence, HttpServletRequest request) {
-		int number = command.get(article.getArCode());
+		int number = 0;
+		if (command.containsKey(article.getArCode())) {
+			number = command.get(article.getArCode());
+		}
 		number = number+quantity;
 		if (article.getArStock() < number) {
 			request.setAttribute(article.getArCode(), false);
