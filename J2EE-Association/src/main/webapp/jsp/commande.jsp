@@ -53,10 +53,14 @@
 			%>
 		</tbody>
 	</table>
-	<form action="command" method="post">
-	<input type="submit" value="Commander"/>
-	<input type="submit" value="Annuler"/>
-	</form>
+	<%
+	if( request.getSession().getAttribute("userName") != null ) {
+		out.println( "<form action=\"commande\" method=\"post\">");
+		out.println("<input type=\"submit\" value=\"Commander\"/>");
+		out.println("<input type=\"submit\" value=\"Annuler\"/>");
+		out.println("</form>");
+	}
+	%>
 </div>
 </body>
 </html>
