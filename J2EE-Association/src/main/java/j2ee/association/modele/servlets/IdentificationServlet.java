@@ -5,6 +5,9 @@ import j2ee.association.persistence.PersistenceServiceProvider;
 import j2ee.association.persistence.services.UserinfoPersistence;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -43,14 +46,20 @@ public class IdentificationServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("[IDENTIFICATION] destroying previous sessions");
 		request.getSession().invalidate();
-		if (connectUser(request)) {			
+		boolean userConnected;
+		try {
+			userConnected = connectUser(request);
+		} catch (NoSuchAlgorithmException e) {
+			userConnected = false;
+		}
+		if (userConnected) {			
 			response.sendRedirect(request.getContextPath()+"/index");
 		} else {
 			response.sendRedirect(request.getContextPath()+"/identification");
 		}
 	}
 
-	private boolean connectUser(HttpServletRequest in){
+	private boolean connectUser(HttpServletRequest in) throws UnsupportedEncodingException, NoSuchAlgorithmException{
 		HttpServletRequest request = in;
 		String userName = request.getParameter("id");
 		String userPasswd = request.getParameter("password");
@@ -62,7 +71,7 @@ public class IdentificationServlet extends HttpServlet {
 		return false;
 	}
 	
-	private boolean checkUnicity(String userName, String userPasswd){
+	private boolean checkUnicity(String userName, String userPasswd) throws UnsupportedEncodingException, NoSuchAlgorithmException{
 		Map<String, Object> name = new HashMap<String, Object>();
 		name.put("usPseudo", userName);
 		UserinfoPersistence service = PersistenceServiceProvider.getService(UserinfoPersistence.class);
@@ -74,13 +83,21 @@ public class IdentificationServlet extends HttpServlet {
 		}
 	}
 
-	private boolean checkUser(String userName, String userPasswd, Userinfo userInfo) {
+	private boolean checkUser(String userName, String userPasswd, Userinfo userInfo) throws UnsupportedEncodingException, NoSuchAlgorithmException {
+		String pass = computeInMd5(userPasswd);
 		if (userName.equals(userInfo.getUsPseudo())) {
-			if (userPasswd.equals(userInfo.getUsPassword())) {
+			if (pass.equals(userInfo.getUsPassword())) {
 				return true;
 			}
 		}
 		return false;
+	}
+
+	private String computeInMd5(String userPasswd) throws UnsupportedEncodingException, NoSuchAlgorithmException {
+		byte[] passBytes = userPasswd.getBytes("UTF-8");
+		MessageDigest md = MessageDigest.getInstance("MD5");
+		byte[] md5 = md.digest(passBytes);
+		return md5.toString();
 	}
 	
 }

@@ -7,6 +7,9 @@ import j2ee.association.persistence.services.CountryPersistence;
 import j2ee.association.persistence.services.UserinfoPersistence;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -44,7 +47,12 @@ public class EnregistrementServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		boolean userCreated = createUser(request);
+		boolean userCreated;
+		try {
+			userCreated = createUser(request);
+		} catch (NoSuchAlgorithmException e) {
+			userCreated = false;
+		}
 		if (userCreated) {
 			response.sendRedirect(request.getContextPath()+"/identification");
 		} else {
@@ -53,7 +61,7 @@ public class EnregistrementServlet extends HttpServlet {
 		
 	}
 
-	private boolean createUser(HttpServletRequest request) {
+	private boolean createUser(HttpServletRequest request) throws UnsupportedEncodingException, NoSuchAlgorithmException {
 		Map<String, String[]> userInformations = request.getParameterMap();
 		Map<String, Object> name = new HashMap<String, Object>();
 		
@@ -77,11 +85,12 @@ public class EnregistrementServlet extends HttpServlet {
 	}
 
 	private void addUser(Map<String, String[]> userInformations,
-			UserinfoPersistence persistence) {
+			UserinfoPersistence persistence) throws UnsupportedEncodingException, NoSuchAlgorithmException {
+		
 		CountryPersistence countryPersistence = PersistenceServiceProvider.getService(CountryPersistence.class);
 		Userinfo newUser = new Userinfo();
 		newUser.setUsPseudo(userInformations.get("userID")[0]);
-		newUser.setUsPassword(userInformations.get("userPassword")[0]);
+		newUser.setUsPassword(computeInMd5(userInformations));
 		newUser.setUsName(userInformations.get("userName")[0]);
 		newUser.setUsFirstname(userInformations.get("userFirstName")[0]);
 		newUser.setUsAdress(userInformations.get("userAddress")[0]);
@@ -91,5 +100,14 @@ public class EnregistrementServlet extends HttpServlet {
 		newUser.setCountry(countryPersistence.load(country));
 		
 		persistence.insert(newUser);
+	}
+
+	private String computeInMd5(Map<String, String[]> userInformations)
+			throws UnsupportedEncodingException, NoSuchAlgorithmException {
+		String pass = userInformations.get("userPassword")[0];
+		byte[] passBytes = pass.getBytes("UTF-8");
+		MessageDigest md = MessageDigest.getInstance("MD5");
+		byte[] md5 = md.digest(passBytes);
+		return md5.toString();
 	}
 }
