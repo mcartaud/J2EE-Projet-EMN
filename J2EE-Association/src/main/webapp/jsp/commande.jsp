@@ -36,16 +36,18 @@
 <!-- 			</tr> -->
 			<%
 				List<Article> articles = (List<Article>)request.getAttribute("articles");
-				Map<String, Integer> command = (Map<String,Integer>)request.getAttribute("command");
+				Map<String, Integer> command = (Map<String,Integer>)request.getSession().getAttribute("command");
 				
-				for(Article article : articles) {
-					if(command.containsKey(article.getArCode())) {
-						out.println("<tr>");
-						out.println("<th>"+article.getArCode()+"</th>");
-						out.println("<th>"+article.getArName()+"</th>");
-						out.println("<th>"+article.getArPrice()+"</th>");
-						out.println("<th>"+command.get(article.getArCode())+"</th>");
-						out.println("</tr>");
+				if(command!=null) {
+					for(Article article : articles) {
+						if(command.containsKey(article.getArId())) {
+							out.println("<tr>");
+							out.println("<th>"+article.getArCode()+"</th>");
+							out.println("<th>"+article.getArName()+"</th>");
+							out.println("<th>"+article.getArPrice()+"</th>");
+							out.println("<th>"+command.get(article.getArId())+"</th>");
+							out.println("</tr>");
+						}
 					}
 				}
 			%>

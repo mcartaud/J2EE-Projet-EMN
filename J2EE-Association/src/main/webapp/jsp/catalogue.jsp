@@ -53,7 +53,7 @@
 				out.println("</th>");
 				// If a user is connected (-> a bean has been given) he can select the nb of article he wants
 				if(request.getSession().getAttribute("userName") != null) {
-					out.print("<th><input type=\"number\" name=\""+article.getArCode()+"\" /></th>");
+					out.print("<th><input type=\"number\" name=\""+article.getArId()+"\" /></th>");
 					if(null != request.getAttribute((String)article.getArCode())) {
 						out.println("Pas assez d\'articles en stock");
 					}else out.println();
