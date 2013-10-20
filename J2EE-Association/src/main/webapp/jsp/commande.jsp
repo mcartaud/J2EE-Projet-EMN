@@ -53,9 +53,10 @@
 			%>
 		</tbody>
 	</table>
-
-
-	<p>Annuler la commande</p>
+	<form action="command" method="post">
+	<input type="submit" value="Commander"/>
+	<input type="submit" value="Annuler"/>
+	</form>
 </div>
 </body>
 </html>
