@@ -19,9 +19,9 @@ CREATE TABLE USERINFO (
 	us_password VARCHAR(255) NOT NULL,
 	us_name VARCHAR(255) NOT NULL,
 	us_firstName VARCHAR(255) NOT NULL,
-	us_adress VARCHAR(255) NOT NULL,
-	us_postcode INT NOT NULL,
-	us_town VARCHAR(255) NOT NULL,
+	us_adress VARCHAR(255),
+	us_postcode INT,
+	us_town VARCHAR(255),
 	us_co_country INT NOT NULL,
 	CONSTRAINT user_pk PRIMARY KEY (us_id),
 	CONSTRAINT country_fc FOREIGN KEY (us_co_country) REFERENCES country (co_id)

@@ -93,6 +93,7 @@ public class CommandeServlet extends HttpServlet {
 			Article article = persistence.load(element);
 			int stock = article.getArStock();
 			article.setArStock(stock - quantity);
+			persistence.save(article);
 		}
 		eraseCommand(session);
 		return true;

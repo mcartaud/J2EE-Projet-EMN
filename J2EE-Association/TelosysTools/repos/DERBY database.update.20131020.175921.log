@@ -1,0 +1,13 @@
+Update date : Sun Oct 20 17:59:21 CEST 2013
+ 
+ Table 'ARTICLE' found in repository
+ (=) table 'ARTICLE' unchanged
+ 
+ Table 'COUNTRY' found in repository
+ (=) table 'COUNTRY' unchanged
+ 
+ Table 'USERINFO' found in repository
+ . Column 'US_ADRESS' : NotNull changed to false
+ . Column 'US_POSTCODE' : NotNull changed to false
+ . Column 'US_TOWN' : NotNull changed to false
+ (*) table 'USERINFO' updated : 3 change(s)

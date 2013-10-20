@@ -94,12 +94,21 @@ public class EnregistrementServlet extends HttpServlet {
 		newUser.setUsName(userInformations.get("userName")[0]);
 		newUser.setUsFirstname(userInformations.get("userFirstName")[0]);
 		newUser.setUsAdress(userInformations.get("userAddress")[0]);
-		newUser.setUsPostcode(Integer.parseInt(userInformations.get("userPostcode")[0]));
+		String postcode = userInformations.get("userPostcode")[0];
+		int post;
+		if (postcode.isEmpty()) {
+			post = 0;
+		} else {
+			post = Integer.parseInt(postcode);
+		}
+		newUser.setUsPostcode(post);
 		newUser.setUsTown(userInformations.get("userTown")[0]);
 		int country = Integer.parseInt(userInformations.get("userCountry")[0]);
-		newUser.setCountry(countryPersistence.load(country));
+		Country userCountry = countryPersistence.load(country);
+		newUser.setCountry(userCountry);
 		
-		persistence.insert(newUser);
+		persistence.save(newUser);
+		//persistence.insert(newUser);
 	}
 
 	private String computeInMd5(Map<String, String[]> userInformations)

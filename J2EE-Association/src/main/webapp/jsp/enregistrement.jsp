@@ -31,11 +31,11 @@
 
       <form class="form-signin" action="enregistrement" method="post">
         <h2 class="form-signin-heading">Enregistrement</h2>
-        <input type="text" class="form-control" placeholder="Pseudo" name="userID" autofocus>
-        <input type="password" class="form-control" placeholder="Password" name="userPassword">
-        <input type="password" class="form-control" placeholder="Password (confirm)" name="userPasswordConfirm">
-        <input type="text" class="form-control" placeholder="Nom" name="userName" autofocus>
-        <input type="text" class="form-control" placeholder="Prénom" name="userFirstName" autofocus>
+        <input type="text" class="form-control" placeholder="Pseudo" name="userID" autofocus required>
+        <input type="password" class="form-control" placeholder="Password" name="userPassword" required>
+        <input type="password" class="form-control" placeholder="Password (confirm)" name="userPasswordConfirm" required>
+        <input type="text" class="form-control" placeholder="Nom" name="userName" autofocus required>
+        <input type="text" class="form-control" placeholder="Prénom" name="userFirstName" autofocus required>
         <input type="text" class="form-control" placeholder="Adresse" name="userAddress" autofocus>
         <input type="text" class="form-control" placeholder="Code Postal" name="userPostcode" autofocus>
         <input type="text" class="form-control" placeholder="Ville" name="userTown" autofocus>
