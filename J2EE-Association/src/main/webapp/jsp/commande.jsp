@@ -56,8 +56,8 @@
 	<%
 	if( request.getSession().getAttribute("userName") != null ) {
 		out.println( "<form action=\"commande\" method=\"post\">");
-		out.println("<input type=\"submit\" value=\"Commander\"/>");
-		out.println("<input type=\"submit\" value=\"Annuler\"/>");
+		out.println("<input type=\"submit\" value=\"Commander\" name=\"action\" />");
+		out.println("<input type=\"submit\" value=\"Annuler\" name=\"action\" />");
 		out.println("</form>");
 	}
 	%>

@@ -5,12 +5,18 @@ import j2ee.association.persistence.PersistenceServiceProvider;
 import j2ee.association.persistence.services.ArticlePersistence;
 
 import java.io.IOException;
+import java.util.Enumeration;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  * Servlet implementation class CommandeServlet
@@ -49,8 +55,49 @@ public class CommandeServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-	
-		
+		HttpSession session = request.getSession();
+		boolean commandOK = true;
+		if (request.getParameter("action").equals("Commander")) {
+			commandOK = sendCommand(session);
+			if (commandOK) {
+				response.sendRedirect(request.getContextPath()+"/index");
+			} else {
+				response.sendRedirect(request.getContextPath()+"/commande");
+			}
+		} else {
+			eraseCommand(session);
+			response.sendRedirect(request.getContextPath()+"/commande");
+		}
 	}
+
+	private void eraseCommand(HttpSession session) {
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		session.setAttribute("command", map);
+	}
+
+	private boolean sendCommand(HttpSession session) {
+		ArticlePersistence persistence = PersistenceServiceProvider.getService(ArticlePersistence.class);
+		
+		@SuppressWarnings("unchecked")
+		Map<String, Integer> map = (Map<String, Integer>) session.getAttribute("command");
+		Set<String> elementName = map.keySet();
+		for (String element : elementName) {
+			int quantity = map.get(element);
+			Article article = persistence.load(element);
+			if (article.getArStock() < quantity) {
+				return false;
+			}
+		}
+		for (String element : elementName) {
+			int quantity = map.get(element);
+			Article article = persistence.load(element);
+			int stock = article.getArStock();
+			article.setArStock(stock - quantity);
+		}
+		eraseCommand(session);
+		return true;
+	}
+	
+	
 
 }

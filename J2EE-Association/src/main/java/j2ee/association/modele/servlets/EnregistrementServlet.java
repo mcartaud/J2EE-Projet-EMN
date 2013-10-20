@@ -57,6 +57,12 @@ public class EnregistrementServlet extends HttpServlet {
 		Map<String, String[]> userInformations = request.getParameterMap();
 		Map<String, Object> name = new HashMap<String, Object>();
 		
+		String password = userInformations.get("userPassword")[0];
+		String passwordConfirm = userInformations.get("userPasswordConfirm")[0];
+		if (!password.equals(passwordConfirm)) {
+			return false;
+		}
+		
 		String userId = userInformations.get("userID")[0];
 		name.put("usPseudo", userId);
 		
