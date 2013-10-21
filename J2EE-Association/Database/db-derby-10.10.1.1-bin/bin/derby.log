@@ -1,7 +1,6 @@
-Mon Oct 21 14:05:05 CEST 2013 : Apache Derby Network Server - 10.10.1.1 - (1458268) démarré et prêt à accepter les connexions sur le port 1527
 ----------------------------------------------------------------
-Mon Oct 21 14:05:31 CEST 2013:
-Amorçage de Derby version The Apache Software Foundation - Apache Derby - 10.10.1.1 - (1458268) : instance a816c00e-0141-dae7-79c7-00001545921e 
+Mon Oct 21 14:21:00 CEST 2013:
+Amorçage de Derby version The Apache Software Foundation - Apache Derby - 10.10.1.1 - (1458268) : instance a816c00e-0141-daf6-0d08-00000316c6a8 
 dans le répertoire de base de données E:\Users\mathieu\Google Drive\EMN\Annee-2\Workspaces\Info\Infrastructures_integration\J2EE-Projet-EMN\J2EE-Association\Database\db-derby-10.10.1.1-bin\bin\association avec le chargeur de classe sun.misc.Launcher$AppClassLoader@752a2259
 Chargé de file:/E:/Users/mathieu/Google%20Drive/EMN/Annee-2/Workspaces/Info/Infrastructures_integration/J2EE-Projet-EMN/J2EE-Association/Database/db-derby-10.10.1.1-bin/lib/derby.jar
 java.vendor=Oracle Corporation
@@ -10,5 +9,5 @@ user.dir=E:\Users\mathieu\Google Drive\EMN\Annee-2\Workspaces\Info\Infrastructur
 os.name=Windows 7
 os.arch=amd64
 os.version=6.1
-derby.system.home=E:\Users\mathieu\Google Drive\EMN\Annee-2\Workspaces\Info\Infrastructures_integration\J2EE-Projet-EMN\J2EE-Association\Database\db-derby-10.10.1.1-bin\bin
+derby.system.home=null
 Chargeur de classe de la base de données démarré - derby.database.classpath = ''
