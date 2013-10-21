@@ -76,7 +76,8 @@ public class Userinfo implements Serializable
     // ENTITY LINKS ( RELATIONSHIP )
     //----------------------------------------------------------------------
     @ManyToOne
-    @JoinColumn(name="US_CO_COUNTRY", referencedColumnName="CO_ID", insertable=false, updatable=false)
+    @JoinColumn(name="US_CO_COUNTRY", referencedColumnName="CO_ID", nullable=false)
+    //@JoinColumn(name="US_CO_COUNTRY", referencedColumnName="CO_ID", insertable=false, updatable=false)
     private Country    country     ;
 
 
