@@ -76,7 +76,7 @@ public class CatalogueServlet extends HttpServlet {
 		response.sendRedirect(request.getContextPath()+"/commande");
 	}
 	
-	private boolean handleCommand(Map<String, Integer> command, String articleOrdered, int orderQuantity) {
+	public boolean handleCommand(Map<String, Integer> command, String articleOrdered, int orderQuantity) {
 		// Loading the article articleOrdered
 		ArticlePersistence service = PersistenceServiceProvider.getService(ArticlePersistence.class);
 		Article article = service.load( articleOrdered );
