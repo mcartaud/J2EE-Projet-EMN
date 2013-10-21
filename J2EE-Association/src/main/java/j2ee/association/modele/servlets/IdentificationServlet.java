@@ -59,7 +59,7 @@ public class IdentificationServlet extends HttpServlet {
 		}
 	}
 
-	private boolean connectUser(HttpServletRequest in) throws UnsupportedEncodingException, NoSuchAlgorithmException{
+	public boolean connectUser(HttpServletRequest in) throws UnsupportedEncodingException, NoSuchAlgorithmException{
 		HttpServletRequest request = in;
 		String userName = request.getParameter("id");
 		String userPasswd = request.getParameter("password");
