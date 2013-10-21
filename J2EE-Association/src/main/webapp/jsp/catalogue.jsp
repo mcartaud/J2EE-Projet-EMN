@@ -18,9 +18,9 @@
 <div class="container">
 	<h1>Catalogue des articles</h1>
 	<form action="catalogue" method="post">
-	<table>
+	<table class="displaytable">
 		<thread>
-		<tr>
+		<tr class="displaytable">
 			<th>Code</th>
 			<th>Nom</th>
 			<th>Prix</th>

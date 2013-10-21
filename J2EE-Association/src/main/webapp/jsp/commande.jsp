@@ -17,9 +17,9 @@
 <%@include file="./menuBarre.jsp" %>
 <div class="container">
 	<h1>Votre commande</h1>
-	<table>
+	<table class="displaytable">
 		<thread>
-		<tr>
+		<tr class="displaytable">
 			<th>Code</th>
 			<th>Nom</th>
 			<th>Prix</th>
