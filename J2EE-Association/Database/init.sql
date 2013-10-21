@@ -34,4 +34,4 @@ CREATE TABLE USERINFO (
 	INSERT INTO COUNTRY (co_name) VALUES ('France (FR)');
 	INSERT INTO COUNTRY (co_name) VALUES ('Angleterre (EN)');
 	INSERT INTO COUNTRY (co_name) VALUES ('Etats Unis (US)');
-	INSERT INTO USERINFO (us_pseudo, us_password, us_name, us_firstName, us_adress, us_postcode, us_town, us_co_country) VALUES ('toto', 'tata', 'doe', 'john', 'a la maison', 44300, 'rouen', 1);
+	INSERT INTO USERINFO (us_pseudo, us_password, us_name, us_firstName, us_adress, us_postcode, us_town, us_co_country) VALUES ('root', '21232f297a57a5a743894a0e4a801fc3', 'Doe', 'John', 'a la maison', 44300, 'Nantes', 1);

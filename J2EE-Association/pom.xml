@@ -8,6 +8,11 @@
   <name>J2EE-Association Maven Webapp</name>
   <url>http://maven.apache.org</url>
   <dependencies>
+    <dependency>
+    	<groupId>org.apache.maven.plugin-tools</groupId>
+    	<artifactId>maven-plugin-annotations</artifactId>
+    	<version>3.2</version>
+    </dependency>
   		<!-- DATABASE JDBC DRIVER ( example with DERBY, to be replaced by the appropriated driver ) -->
 		<dependency>
 			<groupId>org.apache.derby</groupId>
@@ -70,11 +75,6 @@
     	<groupId>jstl</groupId>
     	<artifactId>jstl</artifactId>
     	<version>1.2</version>
-    </dependency>
-    <dependency>
-    	<groupId>org.apache.maven.plugin-tools</groupId>
-    	<artifactId>maven-plugin-annotations</artifactId>
-    	<version>3.2</version>
     </dependency>
   </dependencies>
   <build>

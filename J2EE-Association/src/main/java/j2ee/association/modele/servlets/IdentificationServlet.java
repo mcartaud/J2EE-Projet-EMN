@@ -97,7 +97,13 @@ public class IdentificationServlet extends HttpServlet {
 		byte[] passBytes = userPasswd.getBytes("UTF-8");
 		MessageDigest md = MessageDigest.getInstance("MD5");
 		byte[] md5 = md.digest(passBytes);
-		return md5.toString();
+		StringBuffer sb = new StringBuffer();
+        
+		for (int i = 0; i < md5.length; i++) {
+                sb.append(Integer.toString((md5[i] & 0xff) + 0x100, 16)
+                                .substring(1));
+        }
+		return sb.toString();
 	}
 	
 }
