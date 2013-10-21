@@ -71,7 +71,7 @@ public class IdentificationServlet extends HttpServlet {
 		return false;
 	}
 	
-	private boolean checkUnicity(String userName, String userPasswd) throws UnsupportedEncodingException, NoSuchAlgorithmException{
+	public boolean checkUnicity(String userName, String userPasswd) throws UnsupportedEncodingException, NoSuchAlgorithmException{
 		Map<String, Object> name = new HashMap<String, Object>();
 		name.put("usPseudo", userName);
 		UserinfoPersistence service = PersistenceServiceProvider.getService(UserinfoPersistence.class);
@@ -82,6 +82,8 @@ public class IdentificationServlet extends HttpServlet {
 			return checkUser(userName, userPasswd, informations.get(0));
 		}
 	}
+	
+	
 
 	private boolean checkUser(String userName, String userPasswd, Userinfo userInfo) throws UnsupportedEncodingException, NoSuchAlgorithmException {
 		String pass = computeInMd5(userPasswd);
